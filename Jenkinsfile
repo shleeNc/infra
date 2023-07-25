@@ -1,4 +1,4 @@
-{
+
   node {
 
       stage('Clone repository') {
@@ -15,4 +15,4 @@
       stage('Publish Function') {
           archiveArtifacts artifacts: 'tw_fargate.json'}
   }
-}
+

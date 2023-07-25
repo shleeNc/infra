@@ -1,32 +1,19 @@
 {
-  "containerDefinitions": [
-    {
-      "logConfiguration": {
-        "logDriver": "awslogs",
-        "options": {
-          "awslogs-group": "/ecs/tomcat-container-logs",
-          "awslogs-region": "us-east-1",
-          "awslogs-stream-prefix": "ecs"
-        }
-      },
-      "portMappings": [
+    "containerDefinitions": [
         {
-          "protocol": "tcp",
-          "containerPort": 8080
+            "name": "web",
+            "image": "nginx",
+            "entryPoint": [
+                "/http_server"
+            ]
         }
-      ],
-      "cpu": 1024,
-      "memory": 256,
-      "image": "tomcat",
-      "essential": true,
-      "name": "tomcat-webserver"
-    }
-  ],
-  "requiresCompatibilities": [
-      "FARGATE"
-   ], 
-  "memory": "2048",
-  "family": "tomcat-webserver",
-  "networkMode": "awsvpc",
-  "cpu": "1024"
+    ],
+    "cpu": "256",
+    "executionRoleArn": "arn:aws:iam::112233445566:role/ecsTaskExecutionRole",
+    "family": "webserver",
+    "memory": "512",
+    "networkMode": "awsvpc",
+    "requiresCompatibilities": [
+        "FARGATE"
+    ]
 }
